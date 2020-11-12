@@ -10,7 +10,7 @@
 
 <body>
   <header>
-    <h1>じゃんけん</h1>
+    <h1>じゃんけんゲーム</h1>
   </header>
 
   <main>
@@ -25,15 +25,22 @@
 　　<img class ="kaito_gazo" src="image/gazo.png" ></img>
 
     <div class = "kekka" id="judgment">結果は？</div>
+    <div id="modal-main">勝ちました！<br>おめでとうございます。</div>
+ 
+<!-- #contents START -->
+  <div id="contents">  </div>
+   
+  
   </main>
 
-  <footer>フッター</footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
+    
     $(function () {
       const result  = ['グー','チョキ','パー'];
-    
+   
+
     $('#gu_btn').on('click', function () {
          //自分のてはグー
          let rand = Math.floor(Math.random() * 3);
@@ -47,6 +54,43 @@
          } else if (rand == 1) {
             $('#judgment').text('勝ち');
             $('.kaito_gazo').attr('src','image/aite_choki.png');
+       //body内の最後に<div id="modal-bg"></div>を挿入
+       $("body").append('<div id="modal-bg"></div>');
+
+　　　　//画面中央を計算する関数を実行
+　　　　modalResize();
+
+//モーダルウィンドウを表示
+    $("#modal-bg,#modal-main").fadeIn("slow");
+
+//画面のどこかをクリックしたらモーダルを閉じる
+  $("#modal-bg,#modal-main").click(function(){
+      $("#modal-main,#modal-bg").fadeOut("slow",function(){
+     //挿入した<div id="modal-bg"></div>を削除
+          $('#modal-bg').remove() ;
+     });
+
+    });
+
+//画面の左上からmodal-mainの横幅・高さを引き、その値を2で割ると画面中央の位置が計算できます
+ $(window).resize(modalResize);
+  function modalResize(){
+
+        var w = $(window).width();
+      var h = $(window).height();
+
+        var cw = $("#modal-main").outerWidth();
+       var ch = $("#modal-main").outerHeight();
+
+    //取得した値をcssに追加する
+        $("#modal-main").css({
+            "left": ((w - cw)/2) + "px",
+            "top": ((h - ch)/2) + "px"
+      });
+ }
+       
+
+
          } else {
           $('#judgment').text('負け');
           $('.kaito_gazo').attr('src','image/aite_pa.png');
@@ -70,7 +114,42 @@
          } else {
           $('#judgment').text('勝ち');
           $('.kaito_gazo').attr('src','image/aite_pa.png');
-        }
+        
+             //body内の最後に<div id="modal-bg"></div>を挿入
+    $("body").append('<div id="modal-bg"></div>');
+
+//画面中央を計算する関数を実行
+modalResize();
+
+//モーダルウィンドウを表示
+    $("#modal-bg,#modal-main").fadeIn("slow");
+
+//画面のどこかをクリックしたらモーダルを閉じる
+  $("#modal-bg,#modal-main").click(function(){
+      $("#modal-main,#modal-bg").fadeOut("slow",function(){
+     //挿入した<div id="modal-bg"></div>を削除
+          $('#modal-bg').remove() ;
+     });
+
+    });
+
+//画面の左上からmodal-mainの横幅・高さを引き、その値を2で割ると画面中央の位置が計算できます
+ $(window).resize(modalResize);
+  function modalResize(){
+
+        var w = $(window).width();
+      var h = $(window).height();
+
+        var cw = $("#modal-main").outerWidth();
+       var ch = $("#modal-main").outerHeight();
+
+    //取得した値をcssに追加する
+        $("#modal-main").css({
+            "left": ((w - cw)/2) + "px",
+            "top": ((h - ch)/2) + "px"
+      });
+ }
+}
       });
 
 　　 $('#par_btn').on('click', function () {
@@ -82,6 +161,41 @@
          if(rand == 0) {
             $('#judgment').text('勝ち');
             $('.kaito_gazo').attr('src','image/aite_gu.png');
+                 //body内の最後に<div id="modal-bg"></div>を挿入
+    $("body").append('<div id="modal-bg"></div>');
+
+//画面中央を計算する関数を実行
+modalResize();
+
+//モーダルウィンドウを表示
+    $("#modal-bg,#modal-main").fadeIn("slow");
+
+//画面のどこかをクリックしたらモーダルを閉じる
+  $("#modal-bg,#modal-main").click(function(){
+      $("#modal-main,#modal-bg").fadeOut("slow",function(){
+     //挿入した<div id="modal-bg"></div>を削除
+          $('#modal-bg').remove() ;
+     });
+
+    });
+
+//画面の左上からmodal-mainの横幅・高さを引き、その値を2で割ると画面中央の位置が計算できます
+ $(window).resize(modalResize);
+  function modalResize(){
+
+        var w = $(window).width();
+      var h = $(window).height();
+
+        var cw = $("#modal-main").outerWidth();
+       var ch = $("#modal-main").outerHeight();
+
+    //取得した値をcssに追加する
+        $("#modal-main").css({
+            "left": ((w - cw)/2) + "px",
+            "top": ((h - ch)/2) + "px"
+      });
+ }
+
           
          
          } else if (rand == 1) {
@@ -93,9 +207,6 @@
          }   
       
         });
-
- 
-
 
       });
   </script>
