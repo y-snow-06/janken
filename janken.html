@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+  <title>じゃんけん</title>
+</head>
+
+<body>
+  <header>
+    <h1>じゃんけん</h1>
+  </header>
+
+  <main>
+    <div class = "midashi" >じゃんけんの手を選んでね</div>
+    <ul>
+      <li class="guu"><img src="image/janken_gu.png"id="gu_btn"></li>
+      <li class="choki"><img src="image/janken_choki.png" id="cho_btn"></li>
+      <li class="paa"><img src="image/janken_pa.png" id="par_btn"></li>
+    </ul>
+    
+    <div class = "aite"id ="com_hand" >コンピュータの出した手は？</div>
+　　<img class ="kaito_gazo" src="image/gazo.png" ></img>
+
+    <div class = "kekka" id="judgment">結果は？</div>
+  </main>
+
+  <footer>フッター</footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(function () {
+      const result  = ['グー','チョキ','パー'];
+    
+    $('#gu_btn').on('click', function () {
+         //自分のてはグー
+         let rand = Math.floor(Math.random() * 3);
+         //0コンピュータグー、1コンピュータチョキ、２コンピュータパー
+         // コンピュータの手を表示
+         $('#com_hand').text('コンピュータの手 : '+　result[rand]);
+         if(rand == 0) {
+            $('#judgment').text('あいこ');
+            $('.kaito_gazo').attr('src','image/aite_gu.png');
+            
+         } else if (rand == 1) {
+            $('#judgment').text('勝ち');
+            $('.kaito_gazo').attr('src','image/aite_choki.png');
+         } else {
+          $('#judgment').text('負け');
+          $('.kaito_gazo').attr('src','image/aite_pa.png');
+          
+         }
+     });
+
+    $('#cho_btn').on('click', function() {
+      //自分の手はチョキ
+      let rand = Math.floor(Math.random() * 3);
+      //0コンピュータグー、1コンピュータチョキ、２コンピュータパーs
+      //コンピュータの手を表示
+      $('#com_hand').text('コンピュータの手 : '+　result[rand]);
+         if(rand == 0) {
+            $('#judgment').text('負け');
+            $('.kaito_gazo').attr('src','image/aite_gu.png');
+
+         } else if (rand == 1) {
+            $('#judgment').text('あいこ');
+            $('.kaito_gazo').attr('src','image/aite_choki.png');
+         } else {
+          $('#judgment').text('勝ち');
+          $('.kaito_gazo').attr('src','image/aite_pa.png');
+        }
+      });
+
+　　 $('#par_btn').on('click', function () {
+         //自分のてはグー
+         let rand = Math.floor(Math.random()* 3);
+         //0コンピュータグー、1コンピュータチョキ、２コンピュータパー
+         // コンピュータの手を表示
+         $('#com_hand').text('コンピュータの手 : '+　result[rand]);
+         if(rand == 0) {
+            $('#judgment').text('勝ち');
+            $('.kaito_gazo').attr('src','image/aite_gu.png');
+          
+         
+         } else if (rand == 1) {
+            $('#judgment').text('負け');
+            $('.kaito_gazo').attr('src','image/aite_choki.png');
+         } else {
+          $('#judgment').text('あいこ');
+          $('.kaito_gazo').attr('src','image/aite_pa.png');
+         }   
+      
+        });
+
+ 
+
+
+      });
+  </script>
+
+</body>
+
+</html>
